@@ -1,0 +1,40 @@
+name: Build and test
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows-x64:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Build
+        shell: cmd
+        run: build.bat
+
+      - name: Test synthetic example
+        shell: powershell
+        run: |
+          .\KeyLayoutDecoder.exe --quiet .\examples\sample_input.txt
+          $actual = [IO.File]::ReadAllText('.\examples\sample_input_converted.txt')
+          $expected = [IO.File]::ReadAllText('.\examples\sample_expected_output.txt')
+          if ($actual.Replace("`r`n", "`n") -ne $expected.Replace("`r`n", "`n")) {
+            throw 'L''output non corrisponde al risultato atteso.'
+          }
+
+      - name: Upload executable
+        uses: actions/upload-artifact@v7
+        with:
+          name: KeyLayoutDecoder-windows-x64
+          path: KeyLayoutDecoder.exe
+          if-no-files-found: error
