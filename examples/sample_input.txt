@@ -1,4 +1,4 @@
-layout=00000410
+layout=00000409
 [2026-01-01 12:00:00] vk=0xA0 scan=0x02A down
 [2026-01-01 12:00:00] vk=0x43 scan=0x02E down
 [2026-01-01 12:00:00] vk=0x43 scan=0x02E up

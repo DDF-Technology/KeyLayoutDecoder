@@ -53,7 +53,7 @@ KeyLayoutDecoder.exe --quiet primo.txt secondo.txt
 Il repository contiene esclusivamente un campione sintetico:
 
 - [`examples/sample_input.txt`](examples/sample_input.txt): eventi che rappresentano
-  la digitazione di `Ciao!` con layout italiano;
+  la digitazione di `Ciao!` con layout statunitense, disponibile anche sui runner CI;
 - [`examples/sample_expected_output.txt`](examples/sample_expected_output.txt):
   risultato atteso.
 

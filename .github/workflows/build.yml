@@ -25,7 +25,11 @@ jobs:
       - name: Test synthetic example
         shell: powershell
         run: |
-          .\KeyLayoutDecoder.exe --quiet .\examples\sample_input.txt
+          $process = Start-Process -FilePath '.\KeyLayoutDecoder.exe' `
+            -ArgumentList '--quiet', '.\examples\sample_input.txt' -Wait -PassThru
+          if ($process.ExitCode -ne 0) {
+            throw "Il convertitore e' terminato con codice $($process.ExitCode)."
+          }
           $actual = [IO.File]::ReadAllText('.\examples\sample_input_converted.txt')
           $expected = [IO.File]::ReadAllText('.\examples\sample_expected_output.txt')
           if ($actual.Replace("`r`n", "`n") -ne $expected.Replace("`r`n", "`n")) {
