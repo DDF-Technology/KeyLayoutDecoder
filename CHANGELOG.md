@@ -14,3 +14,8 @@ versionamento semantico.
 - modalità silenziosa `--quiet`;
 - build MSVC statica x64;
 - esempio sintetico e workflow GitHub Actions.
+
+### Licenza
+
+- distribuzione del software e della documentazione con licenza MIT;
+- dichiarazione esplicita dell'assenza di dipendenze di terze parti.

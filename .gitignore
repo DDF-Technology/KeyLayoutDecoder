@@ -10,6 +10,7 @@
 x64/
 Debug/
 Release/
+artifacts/
 
 # Output generati e possibili log reali
 *_converted.txt

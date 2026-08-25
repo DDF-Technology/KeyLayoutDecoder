@@ -1,4 +1,4 @@
-# Build, verifica e pubblicazione privata
+# Build, verifica e release
 
 ## Build locale
 
@@ -8,7 +8,8 @@ Prerequisito: Visual Studio 2022 con **Desktop development with C++**.
 build.bat
 ```
 
-Il flag `/MT` incorpora il runtime C. Restano soltanto dipendenze di sistema Windows.
+Il flag `/MT` incorpora il runtime C. L'eseguibile non richiede librerie di terze
+parti: usa soltanto API di sistema Windows (`user32` e `shell32`).
 
 ## Verifica manuale
 
@@ -18,26 +19,19 @@ KeyLayoutDecoder.exe --quiet examples\sample_input.txt
 
 Aprire `examples\sample_input_converted.txt`: deve contenere `Ciao!` e una nuova riga.
 
-## Repository GitHub privato
+## GitHub Actions
 
-Impostazioni raccomandate:
+Il workflow `.github/workflows/build.yml` compila su `windows-latest`, esegue il test
+sintetico e pubblica `KeyLayoutDecoder.exe` come artefatto della run.
 
-- nome: `KeyLayoutDecoder`;
-- visibilità: **Private**;
-- branch predefinito: `main`;
-- Issues e Discussions disabilitati se il progetto rimane personale;
-- Actions abilitate per produrre gli artefatti Windows;
-- nessuna licenza open source.
+## Preparazione di una release
 
-Creazione tramite GitHub CLI, da eseguire soltanto quando si desidera pubblicare:
-
-```bat
-git init
-git branch -M main
-git add .
-git commit -m "Initial private release"
-gh repo create DDF-Technology/KeyLayoutDecoder --private --source=. --remote=origin --push
-```
+1. aggiornare `CHANGELOG.md` e `VERSION`;
+2. eseguire build e test su Windows x64;
+3. verificare che repository e pacchetto non contengano log reali;
+4. creare il tag corrispondente, per esempio `v1.0.0`;
+5. allegare alla release il pacchetto portable e il relativo checksum SHA-256;
+6. descrivere requisiti, utilizzo, limiti noti, licenza MIT e assenza di firma digitale.
 
 Prima del push verificare sempre:
 
@@ -49,23 +43,10 @@ git ls-files
 Non devono comparire log reali, file `*_converted.txt`, eseguibili, oggetti del
 compilatore o credenziali.
 
-## GitHub Actions
-
-Il workflow `.github/workflows/build.yml` compila su `windows-latest`, esegue il test
-sintetico e pubblica `KeyLayoutDecoder.exe` come artefatto privato del workflow.
-
-Per una versione numerata:
-
-1. aggiornare `CHANGELOG.md` e `VERSION`;
-2. eseguire il test locale;
-3. creare un tag, per esempio `v1.0.0`;
-4. effettuare il push del tag;
-5. scaricare l'artefatto dalla run GitHub Actions e allegarlo a una release privata.
-
 ## Controllo integrità
 
 ```powershell
 Get-FileHash .\KeyLayoutDecoder.exe -Algorithm SHA256
 ```
 
-Conservare l'hash nelle note della release per consentire la verifica del binario.
+Pubblicare l'hash nelle note della release per consentire la verifica del binario.

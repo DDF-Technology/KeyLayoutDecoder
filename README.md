@@ -6,8 +6,8 @@ sequenza di eventi tastiera usando il layout dichiarato nel file di input.
 Il programma è pensato per l'uso tramite drag & drop: si trascina un log `.txt` su
 `KeyLayoutDecoder.exe` e si ottiene un nuovo file UTF-8 accanto all'originale.
 
-> Repository proprietario destinato a uso privato. I log di tastiera possono
-> contenere password, messaggi o altri dati personali: non pubblicare mai log reali.
+> I log di tastiera possono contenere password, messaggi o altri dati personali:
+> non pubblicare mai log reali e lavorare sempre su copie conservate in locale.
 
 ## Funzionalità
 
@@ -28,7 +28,7 @@ Il programma è pensato per l'uso tramite drag & drop: si trascina un log `.txt`
 
 ## Utilizzo
 
-1. Compilare o scaricare `KeyLayoutDecoder.exe` dagli artefatti privati del repository.
+1. Compilare il sorgente oppure scaricare `KeyLayoutDecoder.exe` dalla release GitHub.
 2. Trascinare il file di log sull'EXE.
 3. Confermare il messaggio finale.
 4. Aprire il file `<nome>_converted.txt` creato accanto all'input.
@@ -86,7 +86,9 @@ cl /nologo /W4 /O2 /MT key_layout_decoder.c /Fe:KeyLayoutDecoder.exe /link /SUBS
 
 - [Specifica del formato di input](docs/FORMATO_INPUT.md)
 - [Funzionamento interno e scelte progettuali](docs/FUNZIONAMENTO.md)
-- [Build, verifica e pubblicazione privata](docs/BUILD_E_RELEASE.md)
+- [Build, verifica e release](docs/BUILD_E_RELEASE.md)
+- [Note della release 1.0.0](docs/RELEASE_NOTES_1.0.0.md)
+- [Avvisi relativi a strumenti e API di sistema](THIRD_PARTY_NOTICES.md)
 - [Informativa di sicurezza](SECURITY.md)
 - [Cronologia delle versioni](CHANGELOG.md)
 
@@ -108,4 +110,5 @@ Il software opera interamente in locale. Non registra la tastiera e non acquisis
 nuovi eventi: converte soltanto file già esistenti.
 
 Copyright © 2026 Fabio De Deo - [www.ddf.technology](https://www.ddf.technology).
-Tutti i diritti riservati. Consultare [LICENSE.md](LICENSE.md).
+Distribuito con licenza [MIT](LICENSE.md): uso, studio, modifica e ridistribuzione
+sono consentiti conservando l'avviso di copyright e la licenza.
