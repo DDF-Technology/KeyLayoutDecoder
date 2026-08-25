@@ -22,6 +22,18 @@ testo UTF-8 da log di eventi tastiera nel formato documentato.
 Il pacchetto contiene eseguibile portable, documentazione, licenza MIT, informativa
 di sicurezza e campione sintetico per la verifica.
 
+## File di test allegato
+
+La release offre anche `sample_input.txt` come download separato. Trascinarlo su
+`KeyLayoutDecoder.exe` oppure eseguire:
+
+```bat
+KeyLayoutDecoder.exe --quiet sample_input.txt
+```
+
+Il programma deve creare `sample_input_converted.txt` contenente `Ciao!` seguito da
+una nuova riga. Il campione è interamente sintetico e non contiene dati reali.
+
 ## Requisiti e avvertenze
 
 - Windows 10 o Windows 11 x64;
