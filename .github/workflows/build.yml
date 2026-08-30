@@ -37,8 +37,10 @@ jobs:
           }
 
       - name: Upload executable
+        if: github.event_name == 'workflow_dispatch'
         uses: actions/upload-artifact@v7
         with:
           name: KeyLayoutDecoder-windows-x64
           path: KeyLayoutDecoder.exe
           if-no-files-found: error
+          retention-days: 1
